@@ -27,7 +27,9 @@ module.exports = async function createPosts(page){
             const targetElement2 = elements2.find(e=>e.innerText.includes(query2));
             targetElement2.click();
         }, query2)
-        await page.keyboard.press('Enter');
+        page.on('dialog', async dialog => {
+            await dialog.accept();
+        });
         
          
           await page.waitForNavigation();
